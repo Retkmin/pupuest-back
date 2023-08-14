@@ -3,9 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Pupuest", debut=True)
 
-from routers import login
+from routers import login, operations
 
 app.include_router(login.router)
+app.include_router(operations.router)
 
 origins = ["*"]
 app.add_middleware(
@@ -17,4 +18,4 @@ app.add_middleware(
 )
 @app.get("/")
 async def root():
-    raise HTTPException(status_code=200, detail="Hay conexion con el servidor.")
+    raise HTTPException(status_code=200, detail="The backend is online.")
