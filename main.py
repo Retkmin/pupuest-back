@@ -6,7 +6,6 @@ app = FastAPI(title="Pupuest", debut=True)
 from routers import login
 
 app.include_router(login.router)
-app.include_router(login.router)
 
 origins = ["*"]
 app.add_middleware(
