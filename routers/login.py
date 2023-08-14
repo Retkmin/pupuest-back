@@ -1,14 +1,11 @@
-from datetime import timedelta
 from typing import Literal
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, HTTPException, status
 
 router = APIRouter(prefix="/login", tags=["Login"])
 
 @router.post("/login")
-async def login_for_access_token(
-    
-    usuario:  Literal[False]):
+async def login_for_access_token():
     
     raise HTTPException(
             status_code=status.HTTP_501_NOT_IMPLEMENTED,
