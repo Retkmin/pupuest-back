@@ -9,3 +9,10 @@ This will be the backend that integrate data feed from the front, integrate the 
     - Integration with Power BI
     - Integrate ML 
     - Generate atomatic BT
+
+### To launch
+    
+    - Create virtual environment (Pending instruction)
+    - Activate venv: env -> Scripts -> Activate (Depending terminal)
+    - Install dependencies: pip install -r requirements.txt
+    - Launch backend: uvicorn main:app --reload
