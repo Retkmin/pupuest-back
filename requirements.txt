@@ -1,3 +1,4 @@
-uvicorn
-sqlmodel
-dotenv
+uvicorn # To run server
+sqlmodel # Pydantic and SQLAlchemy
+python-multipart # This is because OAuth2 uses "form data" for sending the username and password.
+
