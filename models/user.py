@@ -3,7 +3,7 @@ from typing import Optional
 from sqlmodel import Field, SQLModel
 
 
-class Operation(SQLModel, table=True):
+class User(SQLModel, table=True):
     id_user: Optional[int] = Field(default=None, primary_key=True)
     username: str = Field()
     id_password: int = Field()
