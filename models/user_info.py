@@ -18,7 +18,7 @@ class UserInfo(SQLModel, table=True):
     last_name: str = Field(nullable=False)
     email: str = Field(nullable=False)
     username: str = Field(nullable=False)
-    date_of_birrth: datetime.date = Field(nullable=False)
+    date_of_birth: datetime.date = Field(nullable=False)
     address: str = Field(nullable=False)
     phone_number: str = Field(nullable=False)
     gender: str = Field(nullable=False, default="Male")

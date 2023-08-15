@@ -17,5 +17,11 @@ class User(SQLModel, table=True):
     reset_token: str = Field(nullable=False)
     verification_token: str = Field(nullable=False)
     email: str = Field(nullable=False)
-    created_at: datetime = Field(nullable=False, default=datetime.datetime.now())
-    updated_at: datetime = Field(nullable=False, default=datetime.datetime.now())
+    created_at: datetime.datetime = Field(
+        nullable=False,
+        default=datetime.datetime.now()
+    )
+    updated_at: datetime.datetime = Field(
+        nullable=False,
+        default=datetime.datetime.now()
+    )

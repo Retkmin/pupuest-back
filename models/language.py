@@ -26,7 +26,11 @@ class Language(SQLModel, table=True):
         default=False,
         description="Indicador que indica que si es el lenguaje por defecto de la app."
     )
-    created_at: datetime = Field(nullable=False, default=datetime.datetime.now())
-    updated_at: datetime = Field(nullable=False, default=datetime.datetime.now())
-    
-
+    created_at: datetime.datetime = Field(
+        nullable=False,
+        default=datetime.datetime.now()
+    )
+    updated_at: datetime.datetime = Field(
+        nullable=False,
+        default=datetime.datetime.now()
+    )
