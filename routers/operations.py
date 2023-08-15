@@ -2,14 +2,13 @@ from fastapi import APIRouter, HTTPException, status
 
 from models.operation import Operation
 
-router = APIRouter(prefix="/operations", tags=["Operation"])
+router = APIRouter(prefix="/operations", tags=["Operations"])
 
-@router.post("", response_model=Operation)
+@router.post("/create", response_model=Operation)
 async def create_operation_based_on_strategy(operation: Operation):
     """
     Create an operation based on a strategy
 
-    - **operative_id**: Optional[int] 
     - **strategy_id**: int
     - **stop_lose_price**: float
     - **max_value**: float

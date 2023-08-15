@@ -4,8 +4,8 @@ from models.operation import Operation
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
-@router.post("/create", response_model=Operation)
-async def login_for_access_token():
+@router.post("/create", response_model=bool)
+async def create_user():
     """
     Create an User with all the information:
 
