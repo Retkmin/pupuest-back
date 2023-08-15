@@ -1,11 +1,16 @@
-from fastapi import APIRouter, HTTPException, status
+import os
+
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 
 from models.token import Token
+
+ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 
 router = APIRouter(prefix="/login", tags=["Login"])
 
 @router.post("", response_model=Token)
-async def login_for_access_token():
+async def login_for_access_token(formData: OAuth2PasswordRequestForm = Depends()) -> dict[str, str]:
     """
     Login with user and password and return a token
 
@@ -13,10 +18,11 @@ async def login_for_access_token():
     - **password**: The password
     - **access_token**: The Token
     \f
-    :param usuario_nuevo: User input.
+    :param formData: Combination of username and password.
     """
+    
     raise HTTPException(
             status_code=status.HTTP_501_NOT_IMPLEMENTED,
-            detail="Login securizado todavia no implementado.",
+            detail="Saving an operation is not implemented yet.",
             headers={"WWW-Authenticate": "Bearer"},
         )
