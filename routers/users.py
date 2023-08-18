@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException, status
 
-from models.operation import Operation
+from models.user import User
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
 @router.post("/create", response_model=bool)
-async def create_user():
+async def create_user(user: User):
     """
     Create an User with all the information:
 
