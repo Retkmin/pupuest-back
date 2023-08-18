@@ -1,0 +1,52 @@
+import datetime
+
+from sqlmodel import Field, SQLModel
+
+
+class PaymentMethod(SQLModel, table=True):
+    __tablename__ = "Payment_Method"
+
+    id_payment_method: int = Field(nullable=False, description="PK de la tabla.")
+    id_user: int = Field(
+        nullable=False,
+        description="",
+    )
+    id_currency: int = Field(
+        nullable=False,
+        description="",
+    )
+    id_payment_status: int = Field(
+        nullable=False,
+        description="",
+    )
+    id_transaction: int = Field(
+        nullable=False,
+        description="",
+    )
+    id_invoice: int = Field(
+        nullable=False,
+        description="",
+    )
+    payment_amount: float = Field(
+        nullable=False,
+        description="",
+    )
+    payment_method: str = Field(
+        nullable=False,
+        description="",
+    )
+    des_payment_status: str = Field(
+        nullable=False,
+        description="",
+    )
+    billing_details: str = Field(
+        nullable=False,
+        description="",
+    )
+    created_at: datetime.datetime = Field(
+        nullable=False, default=datetime.datetime.now()
+    )
+
+    updated_at: datetime.datetime = Field(
+        nullable=False, default=datetime.datetime.now()
+    )
