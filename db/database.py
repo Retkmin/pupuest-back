@@ -1,9 +1,8 @@
 from sqlmodel import MetaData, Session, create_engine
 
-# "postgresql://user:password@postgresserver/db"
 user = "postgres"
 password = "axzCWh766"
-postgresserver = "tradesage-dev.c0xcfmrj3pzo.us-east-2.rds.amazonaws.com/"
+host = "tradesage-dev.c0xcfmrj3pzo.us-east-2.rds.amazonaws.com"
 port = "5432"
 database = "tradesage-dev"
 
@@ -13,7 +12,7 @@ DATABSE_URI: str = (
     + ":"
     + password
     + "@"
-    + postgresserver
+    + host
     + ":"
     + port
     + "/"
