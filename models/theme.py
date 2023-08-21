@@ -22,8 +22,8 @@ class Theme(SQLModel, table=True):
         description="Un color terciario o de resalte para el tema (puede ser un código hexadecimal).",
     )
     theme_name: str = Field(nullable=False, description="Nombre del tema.")
-    background_color: str = Field(nullable=False, description="Nombre del tema.")
-    font_color: str = Field(nullable=False, description="Nombre del tema.")
+    background_color: str = Field(nullable=False, description="El color de fondo del tema.")
+    font_color: str = Field(nullable=False, description="El color de fuente utilizado en el tema.")
     created_at: datetime.datetime = Field(
         nullable=False, default=datetime.datetime.now()
     )
