@@ -10,8 +10,8 @@ app = FastAPI(title="Pupuest", debut=True,
     version="0.0.1",
     contact={
         "name": "Dario bobo",
-        "url": "http://x-force.example.com/contact/",
-        "email": "dariobobo@gmail.com",
+        "url": "www.twitter.com/rektmin",
+        "email": "diegomp96@gmail.com",
     },
 )
 
@@ -34,5 +34,5 @@ async def root():
     try:
         crud.get_db()
     finally:
-        raise HTTPException(status_code=500, detail="Coudln't connect to the database.")        
+        raise HTTPException(status_code=500, detail="Coudln't connect to the database.")
     raise HTTPException(status_code=200, detail="The backend is online.")    
