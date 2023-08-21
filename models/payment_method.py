@@ -6,7 +6,9 @@ from sqlmodel import Field, SQLModel
 class PaymentMethod(SQLModel, table=True):
     __tablename__ = "Payment_Method"
 
-    id_payment_method: int = Field(nullable=False, description="PK de la tabla.")
+    id_payment_method: int = Field(
+        primary_key=True, nullable=False, description="PK de la tabla."
+    )
     id_user: int = Field(nullable=False)
     id_currency: int = Field(nullable=False)
     id_payment_status: int = Field(nullable=False)
