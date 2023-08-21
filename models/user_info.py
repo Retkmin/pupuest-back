@@ -9,11 +9,11 @@ from models.user import User
 
 class UserInfo(SQLModel, table=True):
     
-    __tablename__ = "users_info"
+    __tablename__ = "Users_Info"
 
     id_user_info: Optional[int] = Field(primary_key=True)
     id_user: int = Field(foreign_key=User.id_user)
-    id_lenguaje: int = Field(foreign_key=Language.id_lenguaje)
+    id_lenguaje: int = Field(foreign_key=Language.id_language)
     first_name: str = Field(nullable=False)
     last_name: str = Field(nullable=False)
     email: str = Field(nullable=False)

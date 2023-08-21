@@ -5,6 +5,9 @@ from sqlmodel import Field, SQLModel
 
 
 class Operation(SQLModel, table=True):
+    
+    __tablename__="Operations"
+    
     operative_id: Optional[int] = Field(default=None, primary_key=True)
     strategy_id: int = Field(default=None,nullable=False)
     stop_lose_price: float = Field(nullable=False)
