@@ -1,3 +1,4 @@
+fastapi # The framework used
 uvicorn # To run server
 psycopg2-binary # Used by SQLAlchemy as adapter to the Database
 sqlmodel # Pydantic and SQLAlchemy
