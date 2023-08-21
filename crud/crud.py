@@ -1,17 +1,15 @@
 from fastapi import HTTPException, status
 
-from db.database import get_session
+from db.database import SessionLocal
 
 
 # Dependency
 def get_db():
-    db = get_session()
+    db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
-         
-
 
 def verify_password(plain_password, usuario_db_hashed_password):
     if get_password_hash(plain_password) != usuario_db_hashed_password:
