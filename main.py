@@ -1,6 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
+from crud import crud
+from routers import login, operations, users
+
 app = FastAPI(title="Pupuest", debut=True,
     description="Descripcion del proyecto",
     summary="Diego bobo",
@@ -12,7 +15,7 @@ app = FastAPI(title="Pupuest", debut=True,
     },
 )
 
-from routers import login, operations, users
+
 
 app.include_router(login.router)
 app.include_router(operations.router)
@@ -28,4 +31,8 @@ app.add_middleware(
 )
 @app.get("/")
 async def root():
-    raise HTTPException(status_code=200, detail="The backend is online.")
+    try:
+        crud.get_db()
+    finally:
+        raise HTTPException(status_code=500, detail="Coudln't connect to the database.")        
+    raise HTTPException(status_code=200, detail="The backend is online.")    

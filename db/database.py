@@ -1,23 +1,22 @@
-import os
+from sqlmodel import MetaData, Session, create_engine
 
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlmodel import MetaData, SQLModel, create_engine
+#"postgresql://user:password@postgresserver/db"
+user="postgres"
+password="axzCWh766"
+url="tradesage-dev.c0xcfmrj3pzo.us-east-2.rds.amazonaws.com/"
+port="5432"
+database="tradesage-dev"
 
-SQLALCHEMY_DATABASE_URI: str | None = os.environ.get("SQLALCHEMY_DATABASE_URI")
+DATABSE_URI: str = "postgresql+psycopg2://"+user+":"+password+"@"+url+":"+port+"/"+database
 
-metadata = MetaData(schema="pacle_db")
+#conn = psycopg2.connect(DATABSE_URI)
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URI,
-    connect_args={"options": "-csearch_path=pacle_db"}
-)
+metadata = MetaData(schema="public")
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base: type = declarative_base()
-SQLModel.metadata = Base.metadata
+engine = create_engine(DATABSE_URI)
 
-from models import users
-
-#SQLModel.metadata.create_all(engine)
+def get_session():
+    with Session(engine) as session:
+        yield session
+    
