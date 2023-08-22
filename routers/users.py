@@ -1,5 +1,8 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlmodel import Session
 
+from crud import crud
+from crud import user as crud_user
 from models.user import User
 
 router = APIRouter(prefix="/users", tags=["Users"])
@@ -22,3 +25,7 @@ async def create_user(user: User):
             detail="User creation is not implemented yet.",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    
+@router.get("/list", response_model=list[User])
+async def get_users_list(db: Session() = Depends(crud.get_db)):
+    return crud_user.get_users_list(db=db)
