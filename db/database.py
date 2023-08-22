@@ -2,8 +2,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlmodel import MetaData, SQLModel, create_engine
 
-from models import (currency, invoice, language, operation,  # noqa: F401
-                    payment_method, theme, token, user, user_info)
+import models  # noqa: F401
 
 dbuser = "postgres"
 password = "axzCWh766"
@@ -16,6 +15,7 @@ database = "postgres"
 #DATABASE_URI = "postgresql://postgres:axzCWh766@tradesage-dev.c0xcfmrj3pzo.us-east-2.rds.amazonaws.com/postgres"
 
 DATABASE_URI = f"postgresql://{dbuser}:{password}@{host}:{port}/{database}"
+
 metadata = MetaData(schema="public")
 
 engine = create_engine(

@@ -13,7 +13,7 @@ class User(SQLModel, table=True):
     id_password: int = Field(nullable=False)
     is_active: bool = Field(nullable=False, default=False)
     is_staff: bool = Field(default=False, nullable=False)
-    is_active: bool = Field(default=False, nullable=False)
+    is_admin: bool = Field(default=False, nullable=False)
     reset_token: str = Field(nullable=False)
     verification_token: str = Field(nullable=False)
     email: str = Field(nullable=False)

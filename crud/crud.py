@@ -4,12 +4,12 @@ from db.database import SessionLocal
 
 
 # Dependency
-def get_db():
-    db = SessionLocal()
+def get_session():
+    session = SessionLocal()
     try:
-        yield db
+        yield session
     finally:
-        db.close()
+        session.close()
 
 def verify_password(plain_password, usuario_db_hashed_password):
     if get_password_hash(plain_password) != usuario_db_hashed_password:
