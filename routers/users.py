@@ -3,7 +3,7 @@ from sqlmodel import Session
 
 from crud import crud
 from crud import user as crud_user
-from db_models.user import User
+from data.db_models.user import User
 
 router = APIRouter(prefix="/users", tags=["Users"])
 

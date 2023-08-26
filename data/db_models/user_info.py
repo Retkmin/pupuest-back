@@ -3,8 +3,8 @@ from typing import Optional
 
 from sqlmodel import Field, SQLModel
 
-from models.language import Language
-from models.user import User
+from data.db_models.language import Language
+from data.db_models.user import User
 
 
 class UserInfo(SQLModel, table=True):
