@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlmodel import Session
 
-from crud import crud
-from crud import user as crud_user
 from data.db_models.user import User
+from domain.crud import crud
+from domain.crud import user as crud_user
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
