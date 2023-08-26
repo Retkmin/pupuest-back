@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 
-from models.operation import Operation
+from db_models.operation import Operation
 
 router = APIRouter(prefix="/operations", tags=["Operations"])
 
