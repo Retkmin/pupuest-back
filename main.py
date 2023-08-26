@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import login, operations, users
+from domain.routers import login, operations, users
 
 app = FastAPI(
     title="Pupuest",
