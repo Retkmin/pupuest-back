@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from db_models.user import User
+from data.db_models.user import User
 
 
 def get_users_list(session: Session) -> list[User]:

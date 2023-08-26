@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 
-from db.database import SessionLocal
+from data.db.database import SessionLocal
 
 
 # Dependency
