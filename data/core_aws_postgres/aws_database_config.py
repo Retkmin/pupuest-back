@@ -1,6 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlmodel import MetaData, SQLModel, create_engine
+from sqlmodel import MetaData, Session, SQLModel, create_engine
 
 import data.core_aws_postgres.aws_db_models  # noqa: F401
 
@@ -14,12 +13,17 @@ DATABASE_URI = f"postgresql://{dbuser}:{password}@{host}:{port}/{database}"
 
 metadata = MetaData(schema="public")
 
+connect_args = {"check_same_thread": False}
 engine = create_engine(
     DATABASE_URI,
-    connect_args={"options": "-csearch_path=public"}
+    echo=True,
+    connect_args=connect_args
 )
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+def get_session():
+    with Session(engine) as session:
+        yield session
+
 
 Base = declarative_base()
 
