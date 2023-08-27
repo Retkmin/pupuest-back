@@ -25,7 +25,8 @@ class TokenData(SQLModel):
     username: str | None = None
     
 
-@router.post("", description="API Endpoint to login as a user.",
+@router.post("",
+    description="API Endpoint to login as a user.",
     summary="Endpoint to login as a user."
 )
 async def login_for_access_token(
