@@ -20,7 +20,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 # openssl rand -hex 32
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7" # TODO
 ALGORITHM = "HS256" # TODO
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
@@ -28,8 +27,9 @@ def verify_password(plain_password, hashed_password):
 def get_password_hash(password):
     return pwd_context.hash(password)
 
-def authenticate_user(*,
-    session: Session = Depends(get_session()),
+def authenticate_user(
+    *,
+    session: Session = Depends(get_session),
     username: str,
     password: str
 ):

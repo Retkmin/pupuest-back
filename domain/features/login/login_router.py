@@ -1,29 +1,38 @@
 
-from fastapi import APIRouter, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from datetime import timedelta
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.token import Token
+from domain.features.login.login_functions import authenticate_user, create_access_token
+from domain.features.login.token_schema import Token
 
 router = APIRouter(prefix="/login", tags=["Login"])
 
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-
-    
-
-@router.post("",
-    description="API Endpoint to login as a user.",
-    summary="Endpoint to login as a user."
-)
+@router.post("/token", response_model=Token)
 async def login_for_access_token(
-    formData: OAuth2PasswordRequestForm = Depends(),
-    db: Session = Depends(get_session)
-) -> Token:
-    return HTTPException(status_code=501)
+    form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
+    session: Session = Depends(get_session)
+):
+    user = authenticate_user(
+        session=session,
+        username=form_data.username,
+        password=form_data.password
+        )
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user.username}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+    
