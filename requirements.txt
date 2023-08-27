@@ -3,3 +3,4 @@ uvicorn # To run server
 psycopg2-binary # Used by SQLAlchemy as adapter to the Database
 sqlmodel # Pydantic and SQLAlchemy
 python-multipart # This is because OAuth2 uses "form data" for sending the username and password.
+python-jose[cryptography] # This contains jwt and JWTError
