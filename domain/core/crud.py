@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 
-from data.db.database import SessionLocal
+from data.core_aws_postgres.aws_database_config import SessionLocal
 
 
 # Dependency

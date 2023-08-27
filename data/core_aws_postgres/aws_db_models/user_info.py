@@ -3,8 +3,8 @@ from typing import Optional
 
 from sqlmodel import Field, SQLModel
 
-from data.db_models.language import Language
-from data.db_models.user import User
+from data.core_aws_postgres.aws_db_models.language import Language
+from data.core_aws_postgres.aws_db_models.user import User
 
 
 class UserInfo(SQLModel, table=True):
@@ -12,8 +12,8 @@ class UserInfo(SQLModel, table=True):
     __tablename__ = "Users_Info"
 
     id_user_info: Optional[int] = Field(primary_key=True)
-    id_user: int = Field(foreign_key=User.id_user)
-    id_lenguaje: int = Field(foreign_key=Language.id_language)
+    id_user: int = Field(foreign_key=User().id_user)
+    id_lenguaje: int = Field(foreign_key=Language().id_language)
     first_name: str = Field(nullable=False)
     last_name: str = Field(nullable=False)
     email: str = Field(nullable=False)
