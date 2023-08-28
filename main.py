@@ -3,8 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.user.user_crud import get_users_list_test
+from data.core_aws_postgres.aws_db_models.user.user_crud import \
+    get_users_list_test
 from domain.features.login.login_router import router as login_feature
+from domain.features.register.register_router import router as register_feature
 
 app = FastAPI(
     title="Pupuest",
@@ -19,6 +21,7 @@ app = FastAPI(
 )
 
 app.include_router(login_feature)
+app.include_router(register_feature)
 
 origins = ["*"]
 app.add_middleware(

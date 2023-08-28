@@ -7,7 +7,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
-from domain.features.login.login_functions import authenticate_user, create_access_token
+from domain.features.login.login_functions import (authenticate_user,
+                                                   create_access_token)
 from domain.features.login.token_schema import Token
 
 router = APIRouter(prefix="/login", tags=["Login"])
@@ -23,7 +24,7 @@ async def login_for_access_token(
         session=session,
         username=form_data.username,
         password=form_data.password
-        )
+    )
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
