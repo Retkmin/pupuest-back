@@ -10,7 +10,7 @@ class User(SQLModel, table=True):
     
     id_user: Optional[int] = Field(default=None, primary_key=True)
     username: str = Field(nullable=False) 
-    id_password: Optional[int] = Field(
+    id_password: int = Field(
         nullable=False,
         foreign_key="Passwords.id_password"
     )

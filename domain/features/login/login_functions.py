@@ -8,8 +8,11 @@ from passlib.context import CryptContext
 from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
+from data.core_aws_postgres.aws_db_models.password.password_crud import \
+    get_password_by_id
 from data.core_aws_postgres.aws_db_models.user.user import User
-from data.core_aws_postgres.aws_db_models.user.user_crud import get_user_by_username
+from data.core_aws_postgres.aws_db_models.user.user_crud import \
+    get_user_by_username
 from domain.exceptions import credentials_exception
 from domain.features.login.token_schema import TokenData
 
@@ -33,10 +36,18 @@ def authenticate_user(
     username: str,
     password: str
 ):
-    user = get_user_by_username(session, username)
+    user: User = get_user_by_username(session, username)
     if not user:
         raise HTTPException(status_code=404, detail="Username not found")
-    if not verify_password(password, user.hashed_password):
+
+    
+    user_password = get_password_by_id(session=session, id_password=user.id_password)
+    print("\n")
+    print("Password: ", user_password)
+    print("\n")
+    if not user_password:
+        raise HTTPException(status_code=404, detail="Couldn't find user's password in DB.")
+    if not verify_password(password, user_password):
         return False
     return user
 
