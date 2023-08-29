@@ -9,7 +9,7 @@ class User(SQLModel, table=True):
     __tablename__ = "Users"
     
     id_user: Optional[int] = Field(default=None, primary_key=True)
-    username: str = Field(nullable=False) 
+    username: str = Field(nullable=False)
     id_password: int = Field(
         nullable=False,
         foreign_key="Passwords.id_password"
@@ -17,14 +17,7 @@ class User(SQLModel, table=True):
     is_active: bool = Field(default=False, nullable=False)
     is_staff: bool = Field(default=False, nullable=False)
     is_admin: bool = Field(default=False, nullable=False)
-    reset_token: str = Field(nullable=False)
-    verification_token: str = Field(nullable=False)
-    email: str = Field(nullable=False)
+    reset_token: str = Field(nullable=False) #?
+    verification_token: str = Field(nullable=False) #?
     created_at: datetime.datetime = Field()
     updated_at: datetime.datetime = Field()
-    # surname: str = Field(nullable=False) 
-    # name: str = Field(nullable=False) 
-    # company_conditions: bool = Field(nullable=False)
-    # legal_conditions: bool = Field(nullable=False)
-    # data_protection_conditions: bool = Field(nullable=False)
-    # birthdate: datetime.date = Field(nullable=False) 

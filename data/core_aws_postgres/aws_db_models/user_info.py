@@ -13,7 +13,7 @@ class UserInfo(SQLModel, table=True):
 
     id_user_info: Optional[int] = Field(primary_key=True)
     id_user: int = Field(foreign_key=User().id_user)
-    id_lenguaje: int = Field(foreign_key=Language().id_language)
+    id_lenguaje: int = Field(foreign_key=Language.id_language)
     first_name: str = Field(nullable=False)
     last_name: str = Field(nullable=False)
     email: str = Field(nullable=False)
@@ -27,3 +27,6 @@ class UserInfo(SQLModel, table=True):
     postal_code: str = Field(nullable=False)
     profile_picture: str = Field(nullable=False)
     id_subscription_status: int = Field(nullable=False)
+    company_conditions: bool = Field(nullable=False)
+    legal_conditions: bool = Field(nullable=False)
+    data_protection_conditions: bool = Field(nullable=False)
