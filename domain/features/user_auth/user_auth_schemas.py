@@ -15,9 +15,15 @@ class RegisterUser(SQLModel, table=False):
 
 
 class Token(SQLModel):
-    access_token: str
     token_type: str
+class RefreshToken(Token):
+    refresh_token: str
+class AccessToken(Token):
+    access_token: str
 
+class LoginToken(Token):
+    refresh_token: str
+    access_token: str
 
 class TokenData(SQLModel):
     username: str | None = None

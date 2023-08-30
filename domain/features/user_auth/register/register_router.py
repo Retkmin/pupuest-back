@@ -2,11 +2,15 @@ from fastapi import APIRouter, Depends
 from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.password.password_crud import \
-    generate_random_password
+from data.core_aws_postgres.aws_db_models.password.password_crud import (
+    generate_random_password,
+)
 from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
-    check_email_async, check_username_async)
+    check_email_async,
+    check_username_async,
+)
 from domain.features.user_auth.register.register_functions import create_user
+from domain.features.user_auth.user_auth_functions import get_password_hash
 from domain.features.user_auth.user_auth_schemas import RegisterUser
 
 router = APIRouter()
@@ -19,7 +23,7 @@ async def login_for_access_token(
     return create_user(
         session,
         register_data,
-        hashed_password=generate_random_password()
+        hashed_password=get_password_hash(generate_random_password())
     )
 
 @router.get("/check_username", response_model=bool)
