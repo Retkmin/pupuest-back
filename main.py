@@ -3,10 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.user.user_crud import \
-    get_users_list_test
-from domain.features.login.login_router import router as login_feature
-from domain.features.register.register_router import router as register_feature
+from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
+from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
+    get_users_list_test,
+)
+from domain.features.user_auth.user_auth_router import router as user_auth_router
 
 app = FastAPI(
     title="Pupuest",
@@ -20,8 +21,7 @@ app = FastAPI(
     }
 )
 
-app.include_router(login_feature)
-app.include_router(register_feature)
+app.include_router(user_auth_router)
 
 origins = ["*"]
 app.add_middleware(
@@ -37,6 +37,6 @@ app.add_middleware(
 async def root():
     raise HTTPException(status_code=200, detail="The backend is online.")
 
-@app.get("/test_users_list")
+@app.get("/test_users_list", response_model=list[UserInfo])
 async def test_users_list(session: Session = Depends(get_session)):
     return get_users_list_test(session=session)

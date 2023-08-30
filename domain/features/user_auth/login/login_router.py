@@ -7,25 +7,25 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
-from domain.features.login.login_functions import (authenticate_user,
-                                                   create_access_token)
-from domain.features.login.token_schema import Token
+from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
+from domain.features.user_auth.user_auth_functions import (
+    ACCESS_TOKEN_EXPIRE_MINUTES, authenticate_user, create_access_token)
+from domain.features.user_auth.user_auth_schemas import Token
 
-router = APIRouter(prefix="/login", tags=["Login"])
+router = APIRouter()
 
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
-@router.post("/token", response_model=Token)
+@router.post("/login", response_model=Token)
 async def login_for_access_token(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
     session: Session = Depends(get_session)
 ):
-    user = authenticate_user(
+    user_info: UserInfo = authenticate_user(
         session=session,
+        email=form_data.username,
         username=form_data.username,
         password=form_data.password
     )
-    if not user:
+    if not user_info:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
@@ -33,7 +33,6 @@ async def login_for_access_token(
         )
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"sub": user_info.username}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
-    

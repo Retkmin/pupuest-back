@@ -1,23 +1,26 @@
 import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
-from sqlmodel import Field, SQLModel
+from sqlmodel import Field, Relationship, SQLModel
 
-
+if TYPE_CHECKING:
+    from data.core_aws_postgres.aws_db_models.rol import Rol
 class User(SQLModel, table=True):
     
     __tablename__ = "Users"
     
     id_user: Optional[int] = Field(default=None, primary_key=True)
-    username: str = Field(nullable=False)
+    id_rol: int = Field(default=None, foreign_key="Roles.id_rol")
+    rol: "Rol" = Relationship()
     id_password: int = Field(
         nullable=False,
-        foreign_key="Passwords.id_password"
+        default=0,
     )
+    is_register: bool = Field(default=0)
     is_active: bool = Field(default=False, nullable=False)
     is_staff: bool = Field(default=False, nullable=False)
     is_admin: bool = Field(default=False, nullable=False)
-    reset_token: str = Field(nullable=False) #?
-    verification_token: str = Field(nullable=False) #?
-    created_at: datetime.datetime = Field()
-    updated_at: datetime.datetime = Field()
+    reset_token: str = Field(nullable=False, default="XD") 
+    verification_token: str = Field(nullable=False, default="XD") 
+    created_at: datetime.datetime = Field(default=datetime.datetime.now())
+    updated_at: datetime.datetime = Field(default=datetime.datetime.now())

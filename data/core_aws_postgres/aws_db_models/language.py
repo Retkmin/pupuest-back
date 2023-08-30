@@ -1,14 +1,14 @@
 import datetime
 from typing import Optional
 
-from sqlmodel import Field, SQLModel
+from sqlmodel import Field, Session, SQLModel
 
 
 class Language(SQLModel, table=True):
     
     __tablename__ = "Languages"
     
-    id_language: Optional[int] = Field(primary_key=True)
+    id_language: Optional[int] = Field(primary_key=True, default=None)
     language_name: str = Field(
         nullable=False,
         description="Nombre en texto del lenguaje."
@@ -34,3 +34,6 @@ class Language(SQLModel, table=True):
         nullable=False,
         default=datetime.datetime.now()
     )
+    
+def get_language_by_id(session: Session(), id_language: int):
+    return session.get(Language, id_language)

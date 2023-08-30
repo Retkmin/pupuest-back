@@ -1,34 +1,15 @@
-
-
-import datetime
-
 from fastapi import APIRouter, Depends
-from sqlmodel import Session, SQLModel
+from sqlmodel import Session
 
 from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.password.password_crud import (
-    generate_random_password,
-)
-from data.core_aws_postgres.aws_db_models.user.user_crud import (
-    check_email_async,
-    check_username_async,
-    create_user,
-)
+from data.core_aws_postgres.aws_db_models.password.password_crud import \
+    generate_random_password
+from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
+    check_email_async, check_username_async)
+from domain.features.user_auth.register.register_functions import create_user
+from domain.features.user_auth.user_auth_schemas import RegisterUser
 
-router = APIRouter(prefix="/login", tags=["Login"])
-
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
-class RegisterUser(SQLModel):
-    username: str
-    email: str
-    surname: str
-    name: str
-    company_conditions: bool
-    legal_conditions: bool
-    data_protection_conditions: bool
-    birthdate: datetime.date
-
+router = APIRouter()
 
 @router.post("/register", response_model=bool)
 async def login_for_access_token(

@@ -13,7 +13,7 @@ metadata = MetaData(schema="public")
 #connect_args = {"check_same_thread": False}
 engine = create_engine(
     DATABASE_URI,
-    echo=True,
+    #echo=True,
     #connect_args=connect_args
 )
 
