@@ -34,6 +34,4 @@ def get_users_list_test(session: Session):
     statement = select(UserInfo)
     results = session.exec(statement)
     users = results.all()
-    print(users)
     return users
-

@@ -2,7 +2,7 @@ from sqlmodel import MetaData, Session, create_engine
 
 dbuser = "backend"
 password = "1234"
-host = "tradinglab-main.c0xcfmrj3pzo.us-east-2.rds.amazonaws.com"
+host = "traderslab-main.c0xcfmrj3pzo.us-east-2.rds.amazonaws.com"
 port = "5432"
 database = "postgres"
 
