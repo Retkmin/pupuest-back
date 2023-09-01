@@ -12,7 +12,7 @@ This will be the backend that integrate data feed from the front, integrate the 
 
 ### To launch
 
-We need to create a virtual environment for the project. To do so we use the next command:
+We need to create a virtual environment for the project. Be careful, Windows Defender might be blocking the acceso of python.exe to the folder. To do so we use the next command:
     python -m venv <virtual_environment_config_folder_name>
 
 Once the virtual environment is created, we need to activate it, to do so we need to execute a file called "activate" or "Activate" or "Activate.ps1", it's inside the folder "Scripts" inside the folder containing all the virtual environment config and files.
