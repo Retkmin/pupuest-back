@@ -1,4 +1,5 @@
-from fastapi import Depends, FastAPI, HTTPException
+
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
 
@@ -32,6 +33,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    response = await call_next(request)
+    return response
 
 @app.get("/")
 async def root():

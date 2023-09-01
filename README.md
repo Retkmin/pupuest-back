@@ -12,7 +12,7 @@ This will be the backend that integrate data feed from the front, integrate the 
 
 ### To launch
     
-    - Create virtual environment (Pending instruction)
-    - Activate venv: env -> Scripts -> Activate (Depending terminal)
-    - Install dependencies: pip install -r requirements.txt
-    - Launch backend: uvicorn main:app --reload
+    - Create virtual environment: "python -m venv venv"
+    - Activate venv: env -> Scripts -> Activate (Depending terminal): "venv\Scripts\activate"
+    - Install all necessary dependencies: "pip install -r requirements.txt"
+    - Launch backend: "uvicorn main:app --reload"
