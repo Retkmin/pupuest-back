@@ -1,4 +1,3 @@
-
 from fastapi import HTTPException
 from sqlmodel import Session
 
@@ -7,9 +6,8 @@ from data.core_aws_postgres.aws_db_models.password.password import Password
 from data.core_aws_postgres.aws_db_models.rol import get_rol_by_id
 from data.core_aws_postgres.aws_db_models.user.user import User
 from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
-from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
-    get_user_info_by_username_or_email,
-)
+from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import \
+    get_user_info_by_username_or_email
 from domain.features.user_auth.user_auth_schemas import RegisterUser
 
 

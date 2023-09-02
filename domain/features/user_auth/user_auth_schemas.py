@@ -20,7 +20,9 @@ class RefreshToken(Token):
     refresh_token: str
 class AccessToken(Token):
     access_token: str
-
+    
+class ResetToken(Token):
+    reset_token: str
 class LoginToken(Token):
     refresh_token: str
     access_token: str
