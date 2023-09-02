@@ -6,3 +6,4 @@ python-multipart # This is because OAuth2 uses "form data" for sending the usern
 python-jose[cryptography] # This contains jwt and JWTError
 passlib[bcrypt] # Encryption Algorithm
 pytest # This is for the tests
+requests # To send HTTP requets
