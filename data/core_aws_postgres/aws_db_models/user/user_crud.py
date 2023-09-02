@@ -13,8 +13,8 @@ def get_user_by_id(session: Session, id_user: int):
 
 def save_login_token(id_user: int, login_token: LoginToken, session: Session):
     user = get_user_by_id(session=session, id_user=id_user)
-    user.verification_token = login_token.access_token
-    user.reset_token = login_token.refresh_token
+    user.access_token = login_token.access_token
+    user.refresh_token = login_token.refresh_token
     try:
         session.add(user)
         session.commit()
@@ -33,8 +33,8 @@ def logout_user(username: str, session: Session):
     result = session.exec(statement)
     
     user = result.one()
-    user.verification_token = None
-    user.reset_token = None
+    user.access_token = None
+    user.refresh_token = None
     session.add(user)
     session.commit()
     session.refresh(user)
