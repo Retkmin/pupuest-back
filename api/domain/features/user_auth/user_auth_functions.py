@@ -10,8 +10,8 @@ from api.data.core_aws_postgres.aws_db_models.user_info.user_info import UserInf
 from api.data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
     get_user_info_by_username_or_email,
 )
+from api.domain.exceptions import credentials_exception
 from api.domain.features.user_auth.user_auth_schemas import TokenData
-from domain.exceptions import credentials_exception
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
