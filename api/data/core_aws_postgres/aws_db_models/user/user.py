@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Optional
 from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
-    from data.core_aws_postgres.aws_db_models.rol import Rol
+    from api.data.core_aws_postgres.aws_db_models.rol import Rol
 class User(SQLModel, table=True):
     
     __tablename__ = "Users"

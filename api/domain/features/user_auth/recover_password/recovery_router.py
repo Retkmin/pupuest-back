@@ -3,16 +3,18 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session
 
-from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.password.password_crud import (
+from api.data.core_aws_postgres.aws_database_config import get_session
+from api.data.core_aws_postgres.aws_db_models.password.password_crud import (
     reset_password, set_new_password)
-from data.core_aws_postgres.aws_db_models.user.user_crud import get_user_by_id
-from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
-from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import \
+from api.data.core_aws_postgres.aws_db_models.user.user_crud import \
+    get_user_by_id
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info import \
+    UserInfo
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info_crud import \
     get_user_info_by_username_or_email
-from domain.features.user_auth.user_auth_functions import (get_current_user,
-                                                           get_password_hash)
-from domain.features.user_auth.user_auth_schemas import ResetToken
+from api.domain.features.user_auth.user_auth_functions import (
+    get_current_user, get_password_hash)
+from api.domain.features.user_auth.user_auth_schemas import ResetToken
 
 router = APIRouter()
 

@@ -6,15 +6,15 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session
 
-from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.user.user_crud import save_login_token
-from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
-from domain.features.user_auth.login.login_functions import (
+from api.data.core_aws_postgres.aws_database_config import get_session
+from api.data.core_aws_postgres.aws_db_models.user.user_crud import save_login_token
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
+from api.domain.features.user_auth.login.login_functions import (
     authenticate_user,
     create_access_token,
 )
-from domain.features.user_auth.user_auth_functions import get_current_user
-from domain.features.user_auth.user_auth_schemas import (
+from api.domain.features.user_auth.user_auth_functions import get_current_user
+from api.domain.features.user_auth.user_auth_schemas import (
     AccessToken,
     LoginToken,
     RefreshToken,

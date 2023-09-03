@@ -1,11 +1,11 @@
 from sqlmodel import Session, select
 
-from data.core_aws_postgres.aws_db_models.user.user import User
-from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
-from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
+from api.data.core_aws_postgres.aws_db_models.user.user import User
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
     get_user_info_by_username_or_email,
 )
-from domain.features.user_auth.user_auth_schemas import LoginToken
+from api.domain.features.user_auth.user_auth_schemas import LoginToken
 
 
 def get_user_by_id(session: Session, id_user: int):

@@ -3,12 +3,14 @@ from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
 
-from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
-from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
+from api.data.core_aws_postgres.aws_database_config import get_session
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
     get_users_list_test,
 )
-from domain.features.user_auth.user_auth_router import router as user_auth_router
+from api.domain.features.user_auth.user_auth_router import (
+    router as user_auth_router,
+)
 
 app = FastAPI(
     title="Pupuest",

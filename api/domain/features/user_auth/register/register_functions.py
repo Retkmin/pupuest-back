@@ -1,14 +1,16 @@
 from fastapi import HTTPException
 from sqlmodel import Session
 
-from data.core_aws_postgres.aws_db_models.language import get_language_by_id
-from data.core_aws_postgres.aws_db_models.password.password import Password
-from data.core_aws_postgres.aws_db_models.rol import get_rol_by_id
-from data.core_aws_postgres.aws_db_models.user.user import User
-from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
-from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import \
+from api.data.core_aws_postgres.aws_db_models.language import \
+    get_language_by_id
+from api.data.core_aws_postgres.aws_db_models.password.password import Password
+from api.data.core_aws_postgres.aws_db_models.rol import get_rol_by_id
+from api.data.core_aws_postgres.aws_db_models.user.user import User
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info import \
+    UserInfo
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info_crud import \
     get_user_info_by_username_or_email
-from domain.features.user_auth.user_auth_schemas import RegisterUser
+from api.domain.features.user_auth.user_auth_schemas import RegisterUser
 
 
 def create_user(session: Session, register_data: RegisterUser, hashed_password: str):

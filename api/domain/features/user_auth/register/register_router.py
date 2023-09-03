@@ -1,11 +1,13 @@
-from data.core_aws_postgres.aws_database_config import get_session
-from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
-    check_email_async, check_username_async)
-from domain.features.user_auth.register.register_functions import create_user
-from domain.features.user_auth.user_auth_functions import get_password_hash
-from domain.features.user_auth.user_auth_schemas import RegisterUser
 from fastapi import APIRouter, Depends
 from sqlmodel import Session
+
+from api.data.core_aws_postgres.aws_database_config import get_session
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
+    check_email_async, check_username_async)
+from api.domain.features.user_auth.register.register_functions import \
+    create_user
+from api.domain.features.user_auth.user_auth_functions import get_password_hash
+from api.domain.features.user_auth.user_auth_schemas import RegisterUser
 
 router = APIRouter()
 

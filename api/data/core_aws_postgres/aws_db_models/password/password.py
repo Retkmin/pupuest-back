@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Optional
 from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
-    from data.core_aws_postgres.aws_db_models.user.user import User
+    from api.data.core_aws_postgres.aws_db_models.user.user import User
 
 
 class Password(SQLModel, table=True):

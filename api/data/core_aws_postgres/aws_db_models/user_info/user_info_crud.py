@@ -1,7 +1,8 @@
 
 from sqlmodel import Session, or_, select
 
-from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info import \
+    UserInfo
 
 
 def check_username_async(session: Session, username: str):

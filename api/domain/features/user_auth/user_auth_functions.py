@@ -1,15 +1,17 @@
 from typing import Annotated
 
-from data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
-from data.core_aws_postgres.aws_db_models.user_info.user_info_crud import \
-    get_user_info_by_username_or_email
-from domain.exceptions import credentials_exception
-from domain.features.user_auth.user_auth_schemas import TokenData
 from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from sqlmodel import Session
+
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info import UserInfo
+from api.data.core_aws_postgres.aws_db_models.user_info.user_info_crud import (
+    get_user_info_by_username_or_email,
+)
+from api.domain.features.user_auth.user_auth_schemas import TokenData
+from domain.exceptions import credentials_exception
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
