@@ -1,15 +1,6 @@
-# Pupuest will be a project to automate testing of a tarding startegy
+# TradesLab Python Backend
 
 This will be the backend that integrate data feed from the front, integrate the trading view and expose the Api.
-
-### The road map will be:
-
-    - Integration with Trading View
-    - Read ops from fronted app
-    - Integration with Power BI
-    - Integrate ML 
-    - Generate atomatic BT
-
 
 ### Requirements
  - Python 3.11
@@ -17,7 +8,20 @@ This will be the backend that integrate data feed from the front, integrate the 
 
 Make sure Windows Defender doesn't block some of these actions.
 Make sure PowerShell has the execute scripts policy permited.
+
+Fist of all u need to install python since windows store, for this duty just do next steps:
+
+-Open Microsoft Store on your computer.
+-Search for "Python" in the search bar at the top right corner.
+-You should see a version of Python available for installation. Click on it.
+-Click the "Install" button to install Python from the Microsoft Store.
+
+After this verify your python install with:
+
+python --version
+
 ### To install the project
+
 We will work with virtual environments, to manage the virtual environment, we need to install the package virtualenv:
     pip install virtualenv
 
@@ -31,6 +35,7 @@ Now we need to install all the necesary dependencies inside the virtual environm
     pip install -r requirements.txt
 
 If all the dependencies have been installed, we can no launch the backend.
+
 ### To launch the backend
 Once everything is installed properly, we can run the backend using the next command, we can also change the port with the extra argument --port <port_number>
     uvicorn main:app --reload
